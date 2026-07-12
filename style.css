@@ -461,47 +461,167 @@ footer::before {
 
 
 /* ------------------------------
-   Headshot
+   Apple-style photo stack
 ------------------------------ */
 
 .hero-image-container {
     position: relative;
     z-index: var(--layer-headshot);
-
-    width: min(100%, 430px);
+    width: min(100%, 360px);
+    min-height: 480px;
     margin-left: auto;
+    display: grid;
+    place-items: center;
 }
 
 .photo-background {
     position: absolute;
-    top: 28px;
-    right: -22px;
+    inset: 42px 4px 26px 26px;
     z-index: 0;
-
-    width: 100%;
-    height: 100%;
-    border-radius: 38px;
-
+    border-radius: 40px;
     background: linear-gradient(145deg, var(--accent-bright), var(--accent-dark));
-    transform: rotate(4deg);
+    box-shadow: 0 24px 70px rgba(var(--particle-rgb), 0.24);
+    transform: rotate(var(--accent-rotation, 5deg)) scale(0.96);
+    transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-stack {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    perspective: 1400px;
+}
+
+.photo-card {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 38px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transform-origin: 50% 90%;
+    transition:
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.42s ease,
+        filter 0.42s ease;
+    will-change: transform, opacity;
+}
+
+.photo-card[data-stack-position="0"] {
+    z-index: 4;
+    opacity: 1;
+    transform: translate3d(0, 0, 55px) rotate(0deg) scale(1);
+    filter: brightness(1);
+}
+
+.photo-card[data-stack-position="1"] {
+    z-index: 3;
+    opacity: 0.94;
+    transform: translate3d(24px, 10px, 12px) rotate(5.5deg) scale(0.965);
+    filter: brightness(0.82);
+}
+
+.photo-card[data-stack-position="2"] {
+    z-index: 2;
+    opacity: 0.78;
+    transform: translate3d(-24px, 20px, 0) rotate(-6deg) scale(0.925);
+    filter: brightness(0.68);
+}
+
+.photo-card[data-stack-position="hidden"] {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 30px, -30px) scale(0.89);
 }
 
 .hero-image {
-    position: relative;
-    z-index: 1;
-
     width: 100%;
-    aspect-ratio: 4 / 5;
-
-    border: 1px solid var(--border);
-    border-radius: 38px;
-
+    height: 100%;
     object-fit: cover;
     object-position: center top;
-
-    box-shadow: var(--shadow);
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
+.photo-stack.is-moving-forward .photo-card[data-stack-position="0"] {
+    transform: translate3d(-68px, -6px, 75px) rotate(-8deg) scale(0.985);
+}
+
+.photo-stack.is-moving-backward .photo-card[data-stack-position="0"] {
+    transform: translate3d(68px, -6px, 75px) rotate(8deg) scale(0.985);
+}
+
+.photo-stack-button {
+    position: absolute;
+    top: 50%;
+    z-index: 8;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 50%;
+    background: rgba(8,8,10,0.72);
+    color: white;
+    font: inherit;
+    font-size: 2rem;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    transform: translateY(-50%);
+}
+
+.photo-stack-button-previous { left: -24px; }
+.photo-stack-button-next { right: -24px; }
+
+.photo-stack-dots {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    z-index: 8;
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+}
+
+.photo-stack-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: width 0.25s ease, background 0.25s ease;
+}
+
+.photo-stack-dot[aria-current="true"] {
+    width: 28px;
+    border-radius: 999px;
+    background: var(--accent-bright);
+}
+
+@media (max-width: 900px) {
+    .hero-image-container {
+        width: min(100%, 360px);
+        min-height: 480px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-image-container {
+        width: min(100%, 360px);
+        min-height: 480px;
+    }
+
+    .photo-stack-button-previous { left: -18px; }
+    .photo-stack-button-next { right: -18px; }
+}
 
 /* ------------------------------
    Interior page hero
@@ -713,6 +833,84 @@ footer::before {
     margin-top: 18px;
 }
 
+/* ------------------------------
+   Personal section
+------------------------------ */
+
+.personal-grid {
+    position: relative;
+    z-index: var(--layer-content);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.personal-card {
+    position: relative;
+    min-height: 270px;
+    padding: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    background: transparent;
+    color: #ffffff;
+
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.personal-card::before {
+    position: absolute;
+    inset: 0;
+    z-index: var(--layer-background);
+
+    border-radius: inherit;
+    content: "";
+
+    background:
+        linear-gradient(145deg,
+            color-mix(in srgb, var(--surface) 92%, var(--accent) 8%),
+            var(--surface));
+}
+
+.personal-card>* {
+    position: relative;
+    z-index: var(--layer-content);
+}
+
+.personal-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 30px 68px rgba(0, 0, 0, 0.52),
+        0 0 30px rgba(var(--particle-rgb), 0.1);
+}
+
+.personal-card h3 {
+    margin: 0 0 14px;
+
+    color: #ffffff;
+    font-size: 1.45rem;
+}
+
+.personal-card p {
+    color: var(--text-secondary);
+}
+
+
+@media (max-width: 900px) {
+    .personal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* ------------------------------
    Footer
@@ -748,7 +946,8 @@ footer > * {
     }
 
     .hero-image-container {
-        width: min(85%, 440px);
+        width: min(100%, 360px);
+        min-height: 480px;        
         margin: 0 auto;
     }
 

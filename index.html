@@ -27,7 +27,7 @@
             <div class="hero-content">
                 <p class="eyebrow">Applied Mathematics · Scientific Computing · Optimization</p>
 
-                <h1>Hi, I’m <span>Kyle Adams.</span></h1>
+                <h1>Hi, I’m <span>Kyle!</span></h1>
 
                 <p class="hero-subtitle">
                     I develop mathematical models, uncertainty quantification methods,
@@ -45,50 +45,53 @@
                     <a class="button button-secondary" href="about.html">Learn More About Me</a>
                 </div>
 
-                <div class="hero-tags">
-                    <span>Optimal Control</span>
-                    <span>Uncertainty Quantification</span>
-                    <span>Mathematical Biology</span>
-                    <span>Python</span>
-                    <span>MATLAB</span>
-                </div>
             </div>
 
-            <div class="hero-image-container">
-                <div class="photo-background"></div>
-                <img
-                    class="hero-image"
-                    src="assets/headshot1.png"
-                    alt="Professional headshot of Kyle Adams"
-                >
+            <div class="hero-image-container" data-photo-stack>
+                <div class="photo-background" aria-hidden="true"></div>
+
+                <div class="photo-stack" aria-live="polite">
+                    <article class="photo-card" data-photo-card data-active="true">
+                        <img class="hero-image" src="assets/headshot1.png" alt="Professional headshot of Kyle Adams">
+                    </article>
+
+                    <article class="photo-card" data-photo-card>
+                        <img class="hero-image" src="assets/photo2.png" alt="Kyle posing with his SIAM slides">
+                    </article>
+
+                    <article class="photo-card" data-photo-card>
+                        <img class="hero-image" src="assets/photo3.png" alt="Kyle presenting at SIAM">
+                    </article>
+
+                    <article class="photo-card" data-photo-card>
+                        <img class="hero-image" src="assets/goat.png" alt="Kyle holding a goat">
+                    </article>
+                </div>
+
+                <button class="photo-stack-button photo-stack-button-previous" type="button" data-photo-previous aria-label="Show previous photo">‹</button>
+                <button class="photo-stack-button photo-stack-button-next" type="button" data-photo-next aria-label="Show next photo">›</button>
+
+                <div class="photo-stack-dots" data-photo-dots aria-label="Choose a photo"></div>
             </div>
         </section>
 
-        <section class="preview-section">
-            <div class="section-heading">
-                <p class="section-label">Explore</p>
-                <h2>A focused portfolio for research, software, and quantitative work.</h2>
-            </div>
 
             <div class="preview-grid">
                 <a class="preview-card" href="about.html">
-                    <span class="preview-number">01</span>
                     <h3>About</h3>
-                    <p>Background, interests, technical direction, and professional goals.</p>
+                    <p>Learn more about me.</p>
                     <span class="card-link">Open page →</span>
                 </a>
 
                 <a class="preview-card" href="research.html">
-                    <span class="preview-number">02</span>
                     <h3>Research</h3>
-                    <p>Mechanistic modeling, uncertainty quantification, and robust optimal control.</p>
+                    <p>Learn more about my research: mathematical modeling, uncertainty quantification, and robust optimization.</p>
                     <span class="card-link">Open page →</span>
                 </a>
 
                 <a class="preview-card" href="contact.html">
-                    <span class="preview-number">03</span>
                     <h3>Contact</h3>
-                    <p>Research collaboration, internships, and quantitative industry opportunities.</p>
+                    <p>Reach out to me!</p>
                     <span class="card-link">Open page →</span>
                 </a>
             </div>
