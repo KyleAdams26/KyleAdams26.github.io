@@ -1,1 +1,1 @@
-Add assets/photo2.png and assets/photo3.png. To add more, duplicate a photo-card article in index.html and change src/alt. Keep only the first card marked data-active="true".
+
