@@ -1,0 +1,23 @@
+title: Kyle Adams
+description: Ph.D. candidate in mathematics at the University of Florida
+logo: /assets/headshot1.png
+
+remote_theme: vaibhavvikas/jekyll-theme-minimalistic
+plugins:
+  - jekyll-remote-theme
+
+color-scheme: dark
+
+navigation:
+  - name: Home
+    link: /
+  - name: About
+    link: /about.html
+  - name: Research
+    link: /research.html
+  - name: Contact
+    link: /contact.html
+
+platforms:
+  - name: GitHub
+    link: https://github.com/KyleAdams26
