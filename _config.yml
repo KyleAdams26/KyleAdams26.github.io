@@ -13,11 +13,16 @@ navigation:
     link: /
   - name: About
     link: /about.html
+  - name: Courses
+    link: /courses.html
   - name: Research
     link: /research.html
   - name: Contact
     link: /contact.html
 
+
 platforms:
   - name: GitHub
     link: https://github.com/KyleAdams26
+  - name: LinkedIn
+    link: https://www.linkedin.com/in/kyle-adams2600/
