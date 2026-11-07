@@ -6,7 +6,7 @@ permalink: /courses.html
 
 # Courses
 
-These courses are freely available and designed for students interested in learning mathematics through video lectures and supplementary materials.
+These courses are freely available and designed for anyone interested in learning mathematics through video lectures and supplementary materials.
 
 ## Linear Algebra
 
@@ -22,6 +22,3 @@ Friedberg, S. H., Insel, A. J., and Spence, L. E. *Linear Algebra*.
 
 **Lecture 1: Introduction to Linear Algebra** — *Video coming soon.*
 
-<!-- Once your video is published, replace the line above with:
-**Lecture 1: Introduction to Linear Algebra** — [Watch on YouTube](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
--->
